@@ -8,9 +8,9 @@ class Producto {
     }
 
     info() {
-        return `Código: ${this.codigo}
-        Nombre: ${this.nombre}
-        Cantidad: ${this.cantidad}
-        Costo: $${this.costo}`;
+        return `┬ Código: ${this.codigo}
+├─ Nombre: ${this.nombre}
+├── Cantidad: ${this.cantidad} 
+└─── Costo: $${this.costo}\n`;
     }
 }
