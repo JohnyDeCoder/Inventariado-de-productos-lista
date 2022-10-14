@@ -21,7 +21,6 @@ class Inventario {
         if (this.primero != null) {
             if (this.primero.codigo === codigo) {
                 this.primero = this.primero.next;
-
                 return true;
             }
             else {
@@ -44,7 +43,34 @@ class Inventario {
     }
 
     insertar(posicion, producto) {
+        if (posicion <= 1) {
+            if (this.primero == null) {
+                this.primero = producto;
+                return true;
+            }
+            else {
+                producto.next = this.primero;
+                this.primero = producto;
+                return true;
+            }
+        }
+        else {
+            let temp = this.primero, contador = 1;
 
+            while (temp.next != null) {
+                if ((contador + 1) == posicion) {
+                    producto.next = temp.next;
+                    temp.next = producto;
+                    return true;
+                }
+                else {
+                    temp = temp.next;
+                    contador += 1;
+                }
+            }
+
+            return false;
+        }
     }
 
     buscar(codigo) {
@@ -73,7 +99,6 @@ class Inventario {
         if (this.primero != null) {
             return listarRec(this.primero);
         }
-
         return "NO HAY PRODUCTOS";
 
         function listarRec(producto) {
@@ -90,7 +115,6 @@ class Inventario {
         if (this.primero != null) {
             return listarInversoRec(this.primero);
         }
-
         return "NO HAY PRODUCTOS";
 
         function listarInversoRec(producto) {

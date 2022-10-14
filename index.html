@@ -87,15 +87,29 @@
         cantidad = document.getElementById("cantidad").value;
         costo = document.getElementById("costo").value;
 
-        // let producto = new Producto(codigo, nombre, cantidad, costo);
+        let posicion = prompt("Por favor, especifique la posición para insertar el nuevo producto:", "1");
 
-        // const msg = inventario.eliminar(codigo);
+        if (posicion != null) {
+            posicion = Number(posicion);
 
-        // if (msg != false) {
-        //     return document.getElementById("divDetalles").innerHTML += `<p>¡Se ha eliminado el producto con el código ${codigo}!</p>`;
+            if (posicion <= 0) {
+                posicion = 1;
+            }
+
+            // console.log(posicion);
+
+            let producto = new Producto(codigo, nombre, cantidad, costo);
+            const msg = inventario.insertar(posicion, producto);
+
+            if (msg != false) {
+                return document.getElementById("divDetalles").innerHTML += `<p>¡Se ha insertado el producto con el código ${producto.codigo} en la posición ${posicion}!</p>`;
+            }
+
+            document.getElementById("divDetalles").innerHTML += `<p>¡No existe la posicion ${posicion} en la lista, por favor, especifique un número menor!</p>`;
+        }
+        // else {
+        //     document.getElementById("divDetalles").innerHTML += `<p>¡Has cancelado el insertar!</p>`;
         // }
-
-        // document.getElementById("divDetalles").innerHTML += `<p>¡No existe el producto con el código ${codigo}!</p>`;
     });
 
     // BUSCAR
