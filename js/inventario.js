@@ -26,10 +26,6 @@ class Inventario {
     }
 
     listado() {
-
-    }
-
-    listadoInverso() {
         if (this.primero == null) {
             return "NO HAY PRODUCTOS";
         }
@@ -42,7 +38,25 @@ class Inventario {
                 return `${producto.info()}`;
             }
             else {
-                return `${listarRec(producto.next)}\n${producto.info()}`;
+                return `${producto.info()}\n${listarRec(producto.next)}`;
+            }
+        }
+    }
+
+    listadoInverso() {
+        if (this.primero == null) {
+            return "NO HAY PRODUCTOS";
+        }
+        else {
+            return listarInversoRec(this.primero);
+        }
+
+        function listarInversoRec(producto) {
+            if (producto.next == null) {
+                return `${producto.info()}`;
+            }
+            else {
+                return `${listarInversoRec(producto.next)}\n${producto.info()}`;
             }
         }
     }

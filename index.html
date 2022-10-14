@@ -9,12 +9,12 @@
 </head>
 
 <body>
-    <div align="center">
+    <div align="center" style="font-family:georgia,garamond,serif;">
         <div>
             <form>
                 <h2>INVENTARIADO DE PRODUCTOS</h2>
                 <div id="tituloAccion">
-                    <h4>RELLENA TODOS LOS CAMPOS</h4>
+                    <h4>¡BIENVENIDO!</h4>
                 </div>
                 Código: <input type="number" name="codigo" id="codigo">
                 <br>
@@ -100,7 +100,7 @@
 
         const listado = inventario.listado();
 
-        document.getElementById("divDetalles").innerHTML += `<p><textarea> ---> LISTADO DE PRODUCTOS <--- \n${listado}</textarea></p>`;
+        document.getElementById("divDetalles").innerHTML += `<p>LISTADO DE PRODUCTOS<br><textarea>${listado}</textarea></p>`;
     });
 
     // LISTADO INVERSO
@@ -111,7 +111,7 @@
 
         const listadoI = inventario.listadoInverso();
 
-        document.getElementById("divDetalles").innerHTML += `<p><textarea> ---> LISTADO INVERSO DE PRODUCTOS <--- \n${listadoI}</textarea></p>`;
+        document.getElementById("divDetalles").innerHTML += `<p>LISTADO INVERSO DE PRODUCTOS<br><textarea>${listadoI}</textarea></p>`;
     });
 
     // BORRAR DETALLES
