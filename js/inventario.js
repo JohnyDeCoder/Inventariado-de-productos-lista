@@ -21,7 +21,28 @@ class Inventario {
 
     }
 
+    insertar(posicion, producto) {
+
+    }
+
     buscar(codigo) {
+        if (this.primero.codigo === codigo) {
+            return this.primero;
+        }
+        else {
+            let producto = this.primero;
+
+            while (producto.next != null) {
+                if (producto.next.codigo === codigo) {
+                    return producto;
+                }
+                else {
+                    producto = producto.next;
+                }
+            }
+
+            return null;
+        }
 
     }
 

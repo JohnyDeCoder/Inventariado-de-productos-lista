@@ -26,9 +26,10 @@
                 <br><br>
                 <button type="button" id="btnAgregar">Agregar</button>
                 <button type="button" id="btnEliminar">Eliminar</button>
+                <button type="button" id="btnInsertar">Insertar</button>
                 <button type="button" id="btnBuscar">Buscar</button>
-                <button type="button" id="btnListado">Listado</button>
-                <button type="button" id="btnListadoI">Listado Inverso</button>
+                <button type="button" id="btnListar">Listar</button>
+                <button type="button" id="btnListarI">Listar Inverso</button>
                 <button type="button" id="btnReset">Borrar Detalles</button>
             </form>
         </div>
@@ -75,6 +76,28 @@
         document.getElementById("divDetalles").innerHTML += `<p>¡No existe el producto con el código ${codigo}!</p>`;
     });
 
+    // INSERTAR
+
+    const btnInsertar = document.getElementById("btnInsertar");
+    btnInsertar.addEventListener("click", () => {
+        document.getElementById("tituloAccion").innerHTML = `<h4>INSERTAR PRODUCTOS</h4>`;
+
+        codigo = document.getElementById("codigo").value;
+        nombre = document.getElementById("nombre").value;
+        cantidad = document.getElementById("cantidad").value;
+        costo = document.getElementById("costo").value;
+
+        // let producto = new Producto(codigo, nombre, cantidad, costo);
+
+        // const msg = inventario.eliminar(codigo);
+
+        // if (msg != false) {
+        //     return document.getElementById("divDetalles").innerHTML += `<p>¡Se ha eliminado el producto con el código ${codigo}!</p>`;
+        // }
+
+        // document.getElementById("divDetalles").innerHTML += `<p>¡No existe el producto con el código ${codigo}!</p>`;
+    });
+
     // BUSCAR
 
     const btnBuscar = document.getElementById("btnBuscar");
@@ -92,10 +115,10 @@
         document.getElementById("divDetalles").innerHTML += `<p>¡No existe el producto con el código ${codigo}!</p>`;
     });
 
-    // LISTADO
+    // LISTAR
 
-    const btnListado = document.getElementById("btnListado");
-    btnListado.addEventListener("click", () => {
+    const btnListar = document.getElementById("btnListar");
+    btnListar.addEventListener("click", () => {
         document.getElementById("tituloAccion").innerHTML = `<h4>LISTAR PRODUCTOS</h4>`;
 
         const listado = inventario.listado();
@@ -103,10 +126,10 @@
         document.getElementById("divDetalles").innerHTML += `<p>LISTADO DE PRODUCTOS<br><textarea>${listado}</textarea></p>`;
     });
 
-    // LISTADO INVERSO
+    // LISTAR INVERSO
 
-    const btnListadoI = document.getElementById("btnListadoI");
-    btnListadoI.addEventListener("click", () => {
+    const btnListarI = document.getElementById("btnListarI");
+    btnListarI.addEventListener("click", () => {
         document.getElementById("tituloAccion").innerHTML = `<h4>LISTAR PRODUCTOS A LA INVERSA</h4>`;
 
         const listadoI = inventario.listadoInverso();
