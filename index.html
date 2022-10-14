@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>INVENTARIADO DE PRODUCTOS</title>
+    <script src="js/inventario.js"></script>
+    <script src="js/producto.js"></script>
+</head>
+
+<body>
+    <div align="center">
+        <div>
+            <form>
+                <h2>INVENTARIADO DE PRODUCTOS</h2>
+                <div id="tituloAccion">
+                    <h4>RELLENA TODOS LOS CAMPOS</h4>
+                </div>
+                Código: <input type="number" name="codigo" id="codigo">
+                <br>
+                Nombre: <input type="text" name="nombre" id="nombre">
+                <br>
+                Cantidad: <input type="number" name="cantidad" id="cantidad">
+                <br>
+                Costo: <input type="number" name="costo" id="costo">
+                <br><br>
+                <button type="button" id="btnAgregar">Agregar</button>
+                <button type="button" id="btnEliminar">Eliminar</button>
+                <button type="button" id="btnBuscar">Buscar</button>
+                <button type="button" id="btnListado">Listado</button>
+                <button type="button" id="btnListadoI">Listado Inverso</button>
+                <button type="button" id="btnReset">Borrar Detalles</button>
+            </form>
+        </div>
+        <div id="divDetalles"></div>
+    </div>
+</body>
+<script>
+    const inventario = new Inventario();
+
+    let codigo = "", nombre = "", cantidad = "", costo = "";
+
+    // AGREGAR
+
+    const btnAgregar = document.getElementById("btnAgregar");
+    btnAgregar.addEventListener("click", () => {
+        document.getElementById("tituloAccion").innerHTML = `<h4>AGREGAR PRODUCTOS</h4>`;
+
+        codigo = document.getElementById("codigo").value;
+        nombre = document.getElementById("nombre").value;
+        cantidad = document.getElementById("cantidad").value;
+        costo = document.getElementById("costo").value;
+
+        let producto = new Producto(codigo, nombre, cantidad, costo);
+
+        inventario.agregar(producto);
+
+        document.getElementById("divDetalles").innerHTML += `<p>¡Se ha agregado un nuevo producto!</p>`;
+    });
+
+    // ELIMINAR
+
+    const btnEliminar = document.getElementById("btnEliminar");
+    btnEliminar.addEventListener("click", () => {
+        document.getElementById("tituloAccion").innerHTML = `<h4>ELIMINAR PRODUCTOS</h4>`;
+
+        codigo = document.getElementById("codigo").value;
+
+        const msg = inventario.eliminar(codigo);
+
+        if (msg != false) {
+            return document.getElementById("divDetalles").innerHTML += `<p>¡Se ha eliminado el producto con el código ${codigo}!</p>`;
+        }
+
+        document.getElementById("divDetalles").innerHTML += `<p>¡No existe el producto con el código ${codigo}!</p>`;
+    });
+
+    // BUSCAR
+
+    const btnBuscar = document.getElementById("btnBuscar");
+    btnBuscar.addEventListener("click", () => {
+        document.getElementById("tituloAccion").innerHTML = `<h4>BUSCAR PRODUCTO</h4>`;
+
+        codigo = document.getElementById("codigo").value;
+
+        const producto = inventario.buscar(codigo);
+
+        if (producto != null) {
+            return document.getElementById("divDetalles").innerHTML += `<p>¡El producto con el código ${codigo} existe!</p>`;
+        }
+
+        document.getElementById("divDetalles").innerHTML += `<p>¡No existe el producto con el código ${codigo}!</p>`;
+    });
+
+    // LISTADO
+
+    const btnListado = document.getElementById("btnListado");
+    btnListado.addEventListener("click", () => {
+        document.getElementById("tituloAccion").innerHTML = `<h4>LISTAR PRODUCTOS</h4>`;
+
+        const listado = inventario.listado();
+
+        document.getElementById("divDetalles").innerHTML += `<p><textarea> ---> LISTADO DE PRODUCTOS <--- \n${listado}</textarea></p>`;
+    });
+
+    // LISTADO INVERSO
+
+    const btnListadoI = document.getElementById("btnListadoI");
+    btnListadoI.addEventListener("click", () => {
+        document.getElementById("tituloAccion").innerHTML = `<h4>LISTAR PRODUCTOS A LA INVERSA</h4>`;
+
+        const listadoI = inventario.listadoInverso();
+
+        document.getElementById("divDetalles").innerHTML += `<p><textarea> ---> LISTADO INVERSO DE PRODUCTOS <--- \n${listadoI}</textarea></p>`;
+    });
+
+    // BORRAR DETALLES
+
+    const btnReset = document.getElementById("btnReset");
+    btnReset.addEventListener("click", () => {
+        document.getElementById("tituloAccion").innerHTML = "<h4>RELLENA TODOS LOS CAMPOS</h4>";
+        document.getElementById("divDetalles").innerHTML = "";
+    });
+</script>
+
+</html>
