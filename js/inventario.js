@@ -18,7 +18,29 @@ class Inventario {
     }
 
     eliminar(codigo) {
+        if (this.primero != null) {
+            if (this.primero.codigo === codigo) {
+                this.primero = this.primero.next;
 
+                return true;
+            }
+            else {
+                let producto = this.primero;
+
+                while (producto.next != null) {
+                    if (producto.next.codigo === codigo) {
+                        let siguienteDelEliminado = producto.next.next;
+                        producto.next = siguienteDelEliminado;
+                        return true;
+                    }
+                    else {
+                        producto = producto.next;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
     insertar(posicion, producto) {
@@ -26,33 +48,33 @@ class Inventario {
     }
 
     buscar(codigo) {
-        if (this.primero.codigo === codigo) {
-            return this.primero;
-        }
-        else {
-            let producto = this.primero;
+        if (this.primero != null) {
+            if (this.primero.codigo === codigo) {
+                return this.primero;
+            }
+            else {
+                let producto = this.primero;
 
-            while (producto.next != null) {
-                if (producto.next.codigo === codigo) {
-                    return producto;
-                }
-                else {
-                    producto = producto.next;
+                while (producto.next != null) {
+                    if (producto.next.codigo === codigo) {
+                        return producto.next;
+                    }
+                    else {
+                        producto = producto.next;
+                    }
                 }
             }
-
-            return null;
         }
 
+        return null;
     }
 
     listado() {
-        if (this.primero == null) {
-            return "NO HAY PRODUCTOS";
-        }
-        else {
+        if (this.primero != null) {
             return listarRec(this.primero);
         }
+
+        return "NO HAY PRODUCTOS";
 
         function listarRec(producto) {
             if (producto.next == null) {
@@ -65,12 +87,11 @@ class Inventario {
     }
 
     listadoInverso() {
-        if (this.primero == null) {
-            return "NO HAY PRODUCTOS";
-        }
-        else {
+        if (this.primero != null) {
             return listarInversoRec(this.primero);
         }
+
+        return "NO HAY PRODUCTOS";
 
         function listarInversoRec(producto) {
             if (producto.next == null) {

@@ -109,7 +109,7 @@
         const producto = inventario.buscar(codigo);
 
         if (producto != null) {
-            return document.getElementById("divDetalles").innerHTML += `<p>¡El producto con el código ${codigo} existe!</p>`;
+            return document.getElementById("divDetalles").innerHTML += `<p>¡El producto con el código ${producto.codigo} existe!</p>`;
         }
 
         document.getElementById("divDetalles").innerHTML += `<p>¡No existe el producto con el código ${codigo}!</p>`;
@@ -141,7 +141,7 @@
 
     const btnReset = document.getElementById("btnReset");
     btnReset.addEventListener("click", () => {
-        document.getElementById("tituloAccion").innerHTML = "<h4>RELLENA TODOS LOS CAMPOS</h4>";
+        document.getElementById("tituloAccion").innerHTML = "<h4>¡SE HA LIMPIADO LA INTERFAZ!</h4>";
         document.getElementById("divDetalles").innerHTML = "";
     });
 </script>
